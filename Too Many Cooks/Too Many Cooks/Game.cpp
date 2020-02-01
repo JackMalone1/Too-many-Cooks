@@ -81,6 +81,12 @@ void Game::processEvents()
 		if (sf::Event::KeyPressed == newEvent.type) //user pressed a key
 		{
 			processKeys(newEvent);
+
+		}
+
+		for (Room& r : rooms)
+		{
+			r.processEvents(newEvent);
 		}
 	}
 }
@@ -97,10 +103,6 @@ void Game::processKeys(sf::Event t_event)
 		m_exitGame = true;
 	}
 
-	for (Room& r : rooms)
-	{
-		r.processEvents(t_event);
-	}
 }
 
 /// <summary>
