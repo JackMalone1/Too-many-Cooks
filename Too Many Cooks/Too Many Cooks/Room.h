@@ -14,6 +14,7 @@ private:
 	Player m_player;
 	std::vector<Object> m_objects;
 	HelpBox m_helpBox;
+	sf::Sprite m_body;
 public:
 	void render(sf::RenderWindow& t_window);
 	void update();
