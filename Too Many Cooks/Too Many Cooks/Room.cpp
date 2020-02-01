@@ -16,24 +16,17 @@ Room::Room(sf::Vector2f t_pos) :
 	m_objects.push_back(Object(sf::Vector2f(250, 600), sf::Color::Magenta));
 	m_objects.push_back(Object(sf::Vector2f(450, 600), sf::Color::Magenta));
 
-	currentBroken = getRandomObject();
+	m_currentBroken = getRandomObject();
 	//Set up room bounds
 }
 
-void Room::render(sf::RenderWindow& t_window)
+void Room::init()
 {
-	t_window.draw(m_body);
-	m_player.render(t_window, m_position);
-	for (auto& object : m_objects)
-	{
-		object.render(t_window, m_position);
-	}
+	m_currentBroken->setLinked(m_otherRoom->getRandomObject());
 }
 
-void Room::update(sf::Time t_dt)
+void Room::handleCollisions()
 {
-	m_player.update();
-
 	if (m_player.getPosition().x + m_position.x < m_position.x)
 	{
 		m_player.setPosition(sf::Vector2f(2, m_player.getPosition().y));
@@ -50,7 +43,25 @@ void Room::update(sf::Time t_dt)
 	{
 		m_player.setPosition(sf::Vector2f(m_player.getPosition().x, 400 - m_player.getBody().getSize().y - 2));
 	}
+}
 
+void Room::render(sf::RenderWindow& t_window)
+{
+	t_window.draw(m_body);
+	m_player.render(t_window, m_position);
+	for (auto& object : m_objects)
+	{
+		object.render(t_window, m_position);
+	}
+}
+
+void Room::update(sf::Time t_dt)
+{
+	m_player.update();
+
+	findClosestToPlayer();
+
+	handleCollisions();
 }
 
 void Room::processEvents(sf::Event t_event)
@@ -65,4 +76,20 @@ Object* Room::getRandomObject()
 		return &m_objects[int(rand() % m_objects.size())];
 	}
 	return nullptr;
+}
+
+Object* Room::findClosestToPlayer()
+{
+	Object* current = &m_objects[0];
+	float closestDisctance = m_player.distanceBetween(m_objects[0].getPosition());
+	for (int i = 1; i < m_objects.size(); i++)
+	{
+		float newDistance = m_player.distanceBetween(m_objects[i].getPosition());
+		if (newDistance < closestDisctance)
+		{
+			current = &m_objects[i];
+			closestDisctance = newDistance;
+		}
+	}
+	return current;
 }

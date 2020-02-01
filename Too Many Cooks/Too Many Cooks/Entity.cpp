@@ -18,3 +18,9 @@ void Entity::render(sf::RenderWindow& t_window, sf::Vector2f t_offset)
 	m_body.setPosition(m_position + t_offset);
 	t_window.draw(m_body);
 }
+
+float Entity::distanceBetween(sf::Vector2f t_other)
+{
+	sf::Vector2f distance = m_position - t_other;
+	return sqrt(distance.x * distance.x + distance.y * distance.y);
+}

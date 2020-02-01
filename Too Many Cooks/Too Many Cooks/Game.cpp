@@ -22,6 +22,13 @@ Game::Game() :
 {
 	rooms.push_back(Room(sf::Vector2f(100, 50)));
 	rooms.push_back(Room(sf::Vector2f(1000, 50)));
+	rooms.at(0).setOtherRoom(&rooms.at(1));
+	rooms.at(1).setOtherRoom(&rooms.at(0));
+
+	for (Room& r : rooms)
+	{
+		r.init();
+	}
 
 	srand(time(NULL));
 

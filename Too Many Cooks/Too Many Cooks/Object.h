@@ -19,11 +19,13 @@ public:
 	Object(sf::Vector2f t_pos, sf::Color t_colour);
 	sf::RectangleShape getShape() { return m_body; }
 	ObjectType getType() { return m_type; };
+	Object* getLinked() { return linkedObject; };
+	void setLinked(Object* t_obj) { linkedObject = t_obj; };
 
 private:
 	bool m_beingInteracted;
 	sf::Time m_repairtimer;
-	std::vector<Object*> linkedObjects;
+	Object* linkedObject;
 	ObjectType m_type;
 };
 
