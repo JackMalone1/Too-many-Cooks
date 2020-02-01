@@ -34,10 +34,17 @@ private:
 	
 	void setupFontAndText();
 	void setupSprite();
+	void countDownTimer();
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
+	sf::Text m_scoreText;
+	sf::Text m_timerText;
+	sf::Time m_startTime{ sf::seconds(120) };
+	sf::Clock m_scoreClock;
 
+	int m_scoreValue;
+	int m_timer;
 	bool m_exitGame; // control exiting game
 
 
