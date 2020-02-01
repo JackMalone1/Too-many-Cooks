@@ -97,6 +97,10 @@ void Game::processKeys(sf::Event t_event)
 		m_exitGame = true;
 	}
 
+	for (Room& r : rooms)
+	{
+		r.processEvents(t_event);
+	}
 }
 
 /// <summary>
@@ -108,6 +112,11 @@ void Game::update(sf::Time t_deltaTime)
 	if (m_exitGame)
 	{
 		m_window.close();
+	}
+
+	for (Room& r : rooms)
+	{
+		r.update();
 	}
 }
 

@@ -8,8 +8,7 @@ private:
 public:
 	sf::Vector2f getPosition() { return m_position; }
 	void setPosition(sf::Vector2f t_position) { m_position = t_position; }
-
-	Entity(sf::Vector2f t_pos);
+	Entity(sf::Vector2f t_pos, sf::Color t_colour, int size);
 
 	virtual void update();
 	virtual void render(sf::RenderWindow& t_window);

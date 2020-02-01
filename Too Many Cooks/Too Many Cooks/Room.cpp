@@ -27,4 +27,5 @@ void Room::update()
 
 void Room::processEvents(sf::Event t_event)
 {
+	m_player.processKeyEvents(t_event);
 }

@@ -9,5 +9,6 @@ public:
 	~Player();
 
 	virtual  void update() override;
+	void processKeyEvents(sf::Event t_event);
 };
 
