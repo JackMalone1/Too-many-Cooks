@@ -23,6 +23,7 @@ void Room::render(sf::RenderWindow& t_window)
 
 void Room::update()
 {
+	m_player.update();
 }
 
 void Room::processEvents(sf::Event t_event)
