@@ -33,6 +33,24 @@ void Room::render(sf::RenderWindow& t_window)
 void Room::update(sf::Time t_dt)
 {
 	m_player.update();
+
+	if (m_player.getPosition().x + m_position.x < m_position.x)
+	{
+		m_player.setPosition(sf::Vector2f(2, m_player.getPosition().y));
+	}
+	if (m_player.getPosition().x + m_position.x + m_player.getBody().getSize().x >= m_position.x + 800)
+	{
+		m_player.setPosition(sf::Vector2f(800 - m_player.getBody().getSize().x - 2, m_player.getPosition().y));
+	}
+	if (m_player.getPosition().y + m_position.y < m_position.y)
+	{
+		m_player.setPosition(sf::Vector2f(m_player.getPosition().x, 2));
+	}
+	if (m_player.getPosition().y + m_position.y + m_player.getBody().getSize().y >= m_position.y + 400)
+	{
+		m_player.setPosition(sf::Vector2f(m_player.getPosition().x, 400 - m_player.getBody().getSize().y - 2));
+	}
+
 }
 
 void Room::processEvents(sf::Event t_event)

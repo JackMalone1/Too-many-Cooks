@@ -15,5 +15,11 @@ public:
 
 	virtual  void update() override;
 	void processKeyEvents(sf::Event t_event);
+
+	void setLeft(bool t_left) { m_left = t_left; }
+	void setRight(bool t_right) { m_right = t_right; }
+	void setUp(bool t_up) { m_up = t_up; }
+	void setDown(bool t_down) { m_down = t_down; }
+	sf::RectangleShape getBody() { return m_body; }
 };
 
