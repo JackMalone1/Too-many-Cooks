@@ -11,5 +11,7 @@ public:
 
 	virtual  void update() override;
 	virtual void render(sf::RenderWindow& t_window) override;
+
+	void processKeyEvents(sf::Event t_event);
 };
 

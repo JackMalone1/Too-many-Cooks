@@ -92,6 +92,10 @@ void Game::processKeys(sf::Event t_event)
 		m_exitGame = true;
 	}
 
+	for (Room& r : rooms)
+	{
+		r.processEvents(t_event);
+	}
 }
 
 /// <summary>
@@ -104,6 +108,11 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+
+	for (Room& r : rooms)
+	{
+		r.update();
+	}
 }
 
 /// <summary>
@@ -112,7 +121,10 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
-
+	for (Room& r : rooms)
+	{
+		r.render(m_window);
+	}
 	m_window.display();
 }
 

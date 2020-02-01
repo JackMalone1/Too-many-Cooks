@@ -4,6 +4,10 @@ Room::Room(sf::Vector2f t_pos)
 {
 }
 
+Room::Room()
+{
+}
+
 void Room::render(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_body);
@@ -21,4 +25,5 @@ void Room::update()
 
 void Room::processEvents(sf::Event t_event)
 {
+	m_player.processKeyEvents(t_event);
 }
