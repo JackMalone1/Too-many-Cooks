@@ -115,6 +115,7 @@ void Game::processKeys(sf::Event t_event)
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
+	countDownTimer();
 	if (m_exitGame)
 	{
 		m_window.close();
@@ -136,6 +137,8 @@ void Game::render()
 	{
 		rooms[i].render(m_window);
 	}
+	m_window.draw(m_scoreText);
+	m_window.draw(m_timerText);
 	m_window.display();
 }
 
@@ -148,6 +151,19 @@ void Game::setupFontAndText()
 	{
 		std::cout << "problem loading arial black font" << std::endl;
 	}
+	m_scoreText.setFont(m_ArialBlackfont);
+	m_scoreText.setString("Score: " + std::to_string(m_scoreValue));
+	m_scoreText.setStyle(sf::Text::Italic);
+	m_scoreText.setCharacterSize(30U);
+	m_scoreText.setFillColor(sf::Color::Black);
+	m_scoreText.setPosition(sf::Vector2f{ 0.0f, 0.0f });
+
+	m_timerText.setFont(m_ArialBlackfont);
+	m_timerText.setString("Time Left: " + std::to_string(m_timer));
+	m_timerText.setStyle(sf::Text::Italic);
+	m_timerText.setCharacterSize(30U);
+	m_timerText.setFillColor(sf::Color::Black);
+	m_timerText.setPosition(sf::Vector2f{ 1600.0f, 0.0f });
 
 
 }
@@ -158,4 +174,15 @@ void Game::setupFontAndText()
 void Game::setupSprite()
 {
 
+}
+
+void Game::countDownTimer()
+{
+	if (m_startTime.asSeconds() > 0)
+	{
+		m_startTime -= m_scoreClock.restart();
+		m_timer = m_startTime.asSeconds();
+		m_timerText.setString("Time Left: " + std::to_string(m_timer));
+	}
+	
 }
