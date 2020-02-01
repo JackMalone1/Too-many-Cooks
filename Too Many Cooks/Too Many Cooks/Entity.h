@@ -11,7 +11,7 @@ public:
 	Entity(sf::Vector2f t_pos, sf::Color t_colour, int size);
 
 	virtual void update();
-	virtual void render(sf::RenderWindow& t_window);
+	virtual void render(sf::RenderWindow& t_window, sf::Vector2f t_offset);
 protected:
 	sf::Vector2f m_position;
 	sf::RectangleShape m_body;

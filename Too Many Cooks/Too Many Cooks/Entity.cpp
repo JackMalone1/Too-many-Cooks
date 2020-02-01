@@ -13,7 +13,8 @@ void Entity::update()
 
 }
 
-void Entity::render(sf::RenderWindow& t_window)
+void Entity::render(sf::RenderWindow& t_window, sf::Vector2f t_offset)
 {
+	m_body.setPosition(m_position + t_offset);
 	t_window.draw(m_body);
 }

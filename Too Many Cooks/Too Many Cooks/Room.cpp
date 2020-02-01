@@ -7,17 +7,21 @@ Room::Room(sf::Vector2f t_pos) :
 	m_body.setPosition(t_pos);
 	m_body.setSize(sf::Vector2f(800, 400));
 	m_body.setFillColor(sf::Color::Black);
+	m_objects.push_back(Object(sf::Vector2f(0, 0), sf::Color::Magenta));
+	m_objects.push_back(Object(sf::Vector2f(0, 100), sf::Color::Magenta));
+	m_objects.push_back(Object(sf::Vector2f(100, 0), sf::Color::Magenta));
+	m_objects.push_back(Object(sf::Vector2f(0, 0), sf::Color::Magenta));
+	m_objects.push_back(Object(sf::Vector2f(0, 0), sf::Color::Magenta));
 	//Set up room bounds
 }
 
 void Room::render(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_body);
-	t_window.draw(m_helpBox.getSprite());
-	m_player.render(t_window);
+	m_player.render(t_window, m_position);
 	for (auto& object : m_objects)
 	{
-		t_window.draw(object.getShape());
+		object.render(t_window, m_position);
 	}
 }
 
