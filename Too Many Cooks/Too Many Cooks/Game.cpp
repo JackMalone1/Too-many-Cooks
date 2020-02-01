@@ -25,6 +25,8 @@ Game::Game() :
 	rooms.push_back(Room(sf::Vector2f(1000, 50)));
 	rooms.push_back(Room(sf::Vector2f(1000, 550)));
 
+	srand(time(NULL));
+
 	setupFontAndText(); // load font 
 	setupSprite(); // load texture
 }

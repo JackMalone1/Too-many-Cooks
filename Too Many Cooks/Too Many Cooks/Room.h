@@ -21,5 +21,6 @@ public:
 	void render(sf::RenderWindow& t_window);
 	void update();
 	void processEvents(sf::Event t_event);
+	Object* getRandomObject();
 };
 

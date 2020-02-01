@@ -29,3 +29,12 @@ void Room::processEvents(sf::Event t_event)
 {
 	m_player.processKeyEvents(t_event);
 }
+
+Object* Room::getRandomObject()
+{
+	if (m_objects.size() > 0)
+	{
+		return &m_objects[int(rand() % m_objects.size())];
+	}
+	return nullptr;
+}
