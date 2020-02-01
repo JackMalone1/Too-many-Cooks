@@ -1,5 +1,6 @@
 /// <summary>
 /// author Pete Lowe May 2019
+/// Pete don't steal our game
 /// you need to change the above line or lose marks
 /// </summary>
 #ifndef GAME_HPP
@@ -10,6 +11,9 @@
 /// Don't forget the endif at the bottom
 /// </summary>
 #include <SFML/Graphics.hpp>
+#include <array>
+#include "Player.h"
+#include "Room.h"
 
 class Game
 {
@@ -33,11 +37,11 @@ private:
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
-	sf::Text m_welcomeMessage; // text used for message on screen
-	sf::Texture m_logoTexture; // texture used for sfml logo
-	sf::Sprite m_logoSprite; // sprite used for sfml logo
+
 	bool m_exitGame; // control exiting game
 
+
+	std::array<Room, 4> rooms;
 };
 
 #endif // !GAME_HPP
