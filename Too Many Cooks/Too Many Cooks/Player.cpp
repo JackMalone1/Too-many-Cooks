@@ -3,11 +3,6 @@
 Player::Player(sf::Vector2f t_position) : 
 	Entity(t_position, sf::Color::Green, 20)
 {
-	m_position = sf::Vector2f(30.0f,30.0f);
-	m_body.setSize(sf::Vector2f(20.0f, 20.0f));
-	m_body.setPosition(m_position);
-	m_body.setFillColor(sf::Color::Red);
-	m_body.setOrigin(10.0f, 10.0f);
 }
 
 Player::~Player()

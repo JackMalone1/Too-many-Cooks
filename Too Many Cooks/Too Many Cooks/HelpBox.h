@@ -10,5 +10,5 @@ public:
 private:
 	sf::Sprite m_body;
 	sf::Texture m_texture;
-};
+};              
 
