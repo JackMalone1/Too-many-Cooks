@@ -41,7 +41,7 @@ private:
 	bool m_exitGame; // control exiting game
 
 
-	std::array<Room, 4> rooms;
+	std::vector<Room> rooms;
 };
 
 #endif // !GAME_HPP

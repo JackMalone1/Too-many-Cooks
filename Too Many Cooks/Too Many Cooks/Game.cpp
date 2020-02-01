@@ -17,9 +17,14 @@
 /// load and setup thne image
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ 2880, 1620, 32U }, "SFML Game" },
+	m_window{ sf::VideoMode{ 1920, 1080, 32U }, "SFML Game" },
 	m_exitGame{false} //when true game will exit
 {
+	rooms.push_back(Room(sf::Vector2f(100, 50)));
+	rooms.push_back(Room(sf::Vector2f(100, 550)));
+	rooms.push_back(Room(sf::Vector2f(1000, 50)));
+	rooms.push_back(Room(sf::Vector2f(1000, 550)));
+
 	setupFontAndText(); // load font 
 	setupSprite(); // load texture
 }
@@ -112,7 +117,10 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
-
+	for (int i = 0; i < rooms.size(); i++)
+	{
+		rooms[i].render(m_window);
+	}
 	m_window.display();
 }
 
