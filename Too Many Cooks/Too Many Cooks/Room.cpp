@@ -1,7 +1,8 @@
 #include "Room.h"
 
 Room::Room(sf::Vector2f t_pos) :
-	m_player(sf::Vector2f(370, 320))
+	m_player(sf::Vector2f(370, 320)),
+	m_helpBox{ t_pos }
 {
 	m_position = t_pos;
 	m_body.setPosition(t_pos);
@@ -28,6 +29,7 @@ void Room::render(sf::RenderWindow& t_window)
 	{
 		object.render(t_window, m_position);
 	}
+	m_helpBox.render(t_window, m_position);
 }
 
 void Room::update(sf::Time t_dt)
@@ -46,9 +48,9 @@ void Room::update(sf::Time t_dt)
 	{
 		m_player.setPosition(sf::Vector2f(m_player.getPosition().x, 2));
 	}
-	if (m_player.getPosition().y + m_position.y + m_player.getBody().getSize().y >= m_position.y + 400)
+	if (m_player.getPosition().y + m_position.y + m_player.getBody().getSize().y >= m_position.y + 700)
 	{
-		m_player.setPosition(sf::Vector2f(m_player.getPosition().x, 400 - m_player.getBody().getSize().y - 2));
+		m_player.setPosition(sf::Vector2f(m_player.getPosition().x, 700 - m_player.getBody().getSize().y - 2));
 	}
 
 }
