@@ -1,10 +1,7 @@
 #include "Entity.h"
 
-Entity::Entity()
-{
-}
-
-Entity::Entity(sf::Vector2f t_pos)
+Entity::Entity(sf::Vector2f t_pos) :
+	m_position(t_pos)
 {
 }
 

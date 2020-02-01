@@ -1,5 +1,9 @@
 #include "Room.h"
 
+Room::Room(sf::Vector2f t_pos)
+{
+}
+
 void Room::render(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_body);
