@@ -4,7 +4,9 @@ Room::Room(sf::Vector2f t_pos) :
 	m_player(sf::Vector2f(370, 320)),
 	m_helpBox{ t_pos },
 	repairPressed(false),
-	isRepairing(false)
+	isRepairing(false),
+	m_currentBroken(nullptr),
+	m_otherRoom(nullptr)
 {
 	m_position = t_pos;
 	m_body.setPosition(t_pos);
@@ -19,13 +21,17 @@ Room::Room(sf::Vector2f t_pos) :
 	m_objects.push_back(Object(sf::Vector2f(250, 600), sf::Color::Magenta, ObjectType::Type7));
 	m_objects.push_back(Object(sf::Vector2f(450, 600), sf::Color::Magenta, ObjectType::Type8));
 
-	m_currentBroken = getRandomObject();
-	//Set up room bounds
+	if (!font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
+	{
+		std::cout << "problem loading arial black font" << std::endl;
+	}
+	text.setFont(font);
+	text.setFillColor(sf::Color::Red);
+	text.setCharacterSize(36);
 }
 
 void Room::init()
 {
-	m_currentBroken->setLinked(m_otherRoom->getRandomObject());
 }
 
 void Room::handleCollisions()
@@ -50,9 +56,13 @@ void Room::handleCollisions()
 
 void Room::newBrokenObject()
 {
-	m_currentBroken->setLinked(nullptr);
+	if (m_currentBroken->getLinked() != nullptr)
+	{
+		m_currentBroken->setLinked(nullptr);
+	}
 	m_currentBroken = getRandomObject();
 	m_currentBroken->setLinked(m_otherRoom->getRandomObject());
+	m_currentBroken->setRepairProgress(100);
 }
 
 void Room::render(sf::RenderWindow& t_window)
@@ -64,13 +74,42 @@ void Room::render(sf::RenderWindow& t_window)
 		object.render(t_window, m_position);
 	}
 	m_helpBox.render(t_window, m_position);
+	if (m_currentBroken != nullptr)
+	{
+		text.setFont(font);
+		text.setString(std::to_string(m_currentBroken->getRepairProgress()));
+		text.setPosition(m_currentBroken->getPosition() - sf::Vector2f(0, 50) + m_position);
+		t_window.draw(text);
+	}
 }
 
 void Room::update(sf::Time t_dt)
 {
+	if (m_currentBroken == nullptr)
+	{
+		m_currentBroken = getRandomObject();
+		newBrokenObject();
+	}
 	m_player.update();
 
 	m_helpBox.setCurrent(findClosestToPlayer());
+	if (repairPressed)
+	{
+		if (findClosestToPlayer() == m_currentBroken && 
+			findClosestToPlayer()->distanceBetween(m_player.getPosition()) < 150)
+		{
+			m_player.setInteracting(findClosestToPlayer());
+			if (m_player.getInteracting() == m_currentBroken)
+			{
+				m_currentBroken->repair(t_dt);
+			}
+		}
+	}
+
+	if (m_currentBroken->getRepairProgress() <= 0)
+	{
+		newBrokenObject();
+	}
 
 	handleCollisions();
 }

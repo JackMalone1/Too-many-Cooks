@@ -21,11 +21,14 @@ public:
 	ObjectType getType() { return m_type; };
 	Object* getLinked() { return linkedObject; };
 	void setLinked(Object* t_obj) { linkedObject = t_obj; };
-
+	void setBeingInteracted(bool i) { m_beingInteracted = i; };
+	void setRepairProgress(int t_progress) { m_repairProgress = t_progress; };
+	int getRepairProgress() { return m_repairProgress; };
+	void repair(sf::Time t_dt) { m_repairProgress -= 1; };
 private:
 	bool m_beingInteracted;
-	sf::Time m_repairtimer;
-	sf::Time m_timeToRepair;
+	int m_repairProgress;
+	float m_repairRate;
 	Object* linkedObject;
 	ObjectType m_type;
 };

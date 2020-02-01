@@ -33,5 +33,7 @@ public:
 	void setOtherRoom(Room* t_otherRoom) { m_otherRoom = t_otherRoom; };
 	Object* findClosestToPlayer();
 	Room* m_otherRoom;
+	sf::Text text;
+	sf::Font font;
 };
 
