@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player(sf::Vector2f t_position) : 
-	Entity(t_position, sf::Color::Green, 20)
+	Entity(t_position, sf::Color::Green, 60)
 {
 }
 

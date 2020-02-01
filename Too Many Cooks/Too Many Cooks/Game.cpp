@@ -21,9 +21,7 @@ Game::Game() :
 	m_exitGame{false} //when true game will exit
 {
 	rooms.push_back(Room(sf::Vector2f(100, 50)));
-	rooms.push_back(Room(sf::Vector2f(100, 550)));
 	rooms.push_back(Room(sf::Vector2f(1000, 50)));
-	rooms.push_back(Room(sf::Vector2f(1000, 550)));
 
 	srand(time(NULL));
 
@@ -120,7 +118,7 @@ void Game::update(sf::Time t_deltaTime)
 
 	for (Room& r : rooms)
 	{
-		r.update();
+		r.update(t_deltaTime);
 	}
 }
 
