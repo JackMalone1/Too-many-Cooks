@@ -1,7 +1,7 @@
 #include "Room.h"
 
 Room::Room(sf::Vector2f t_pos) :
-	m_player(sf::Vector2f(50, 50) + t_pos)
+	m_player(sf::Vector2f(50, 50))
 {
 	m_position = t_pos;
 	m_body.setPosition(t_pos);

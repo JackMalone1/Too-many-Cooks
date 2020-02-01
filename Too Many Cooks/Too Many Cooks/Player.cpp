@@ -13,22 +13,22 @@ void Player::update()
 {
 	if (m_down)
 	{
-		m_body.move(0.0f, 10.0f);
+		setPosition(getPosition() + sf::Vector2f(0.0f, 10.0f));
 	}
 
 	if (m_up)
 	{
-		m_body.move(0.0f, -10.0f);
+		setPosition(getPosition() + sf::Vector2f(0.0f, -10.0f));
 	}
 
 	if (m_left)
 	{
-		m_body.move(-10.0f, 0.0f);
+		setPosition(getPosition() + sf::Vector2f(-10.0f, 0.0f));
 	}
 
 	if (m_right)
 	{
-		m_body.move(10.0f, 0.0f);
+		setPosition(getPosition() + sf::Vector2f(10.0f, 0.0f));
 	}
 }
 
