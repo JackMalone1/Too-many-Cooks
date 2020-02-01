@@ -2,7 +2,9 @@
 
 Room::Room(sf::Vector2f t_pos) :
 	m_player(sf::Vector2f(370, 320)),
-	m_helpBox{ t_pos }
+	m_helpBox{ t_pos },
+	repairPressed(false),
+	isRepairing(false)
 {
 	m_position = t_pos;
 	m_body.setPosition(t_pos);
@@ -46,6 +48,13 @@ void Room::handleCollisions()
 	}
 }
 
+void Room::newBrokenObject()
+{
+	m_currentBroken->setLinked(nullptr);
+	m_currentBroken = getRandomObject();
+	m_currentBroken->setLinked(m_otherRoom->getRandomObject());
+}
+
 void Room::render(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_body);
@@ -68,7 +77,32 @@ void Room::update(sf::Time t_dt)
 
 void Room::processEvents(sf::Event t_event)
 {
-	m_player.processKeyEvents(t_event);
+	if (t_event.type == sf::Event::KeyPressed)
+	{
+		if (t_event.key.code == sf::Keyboard::E)
+		{
+			repairPressed = true;
+		}
+	}
+
+	if (t_event.type == sf::Event::KeyReleased)
+	{
+		if (t_event.key.code == sf::Keyboard::E)
+		{
+			repairPressed = false;
+		}
+	}
+	if (!repairPressed)
+	{
+		m_player.processKeyEvents(t_event);
+	}
+	else
+	{
+		m_player.setDown(false);
+		m_player.setLeft(false);
+		m_player.setRight(false);
+		m_player.setUp(false);
+	}
 }
 
 Object* Room::getRandomObject()

@@ -22,13 +22,13 @@ void HelpBox::render(sf::RenderWindow& t_window, sf::Vector2f t_offset)
 		if (m_current->getLinked() != nullptr)
 		{
 			m_objectShape = m_current->getLinked()->getShape();
-			m_objectShape.setPosition(sf::Vector2f(m_position.x + t_offset.x, m_position.y + 850));
+			m_objectShape.setPosition(sf::Vector2f(t_offset.x + 200, m_position.y + 850));
 			t_window.draw(m_objectShape);
 
 
 			text.setFont(font);
 			text.setString(setObjectTypeText(m_current->getLinked()->getType()));
-			text.setPosition(t_offset + sf::Vector2f(0.0f, 950.0f));
+			text.setPosition(t_offset + sf::Vector2f(200.0f, 950.0f));
 
 			t_window.draw(text);
 		}

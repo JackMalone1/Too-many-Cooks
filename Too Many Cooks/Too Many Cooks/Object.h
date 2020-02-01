@@ -25,6 +25,7 @@ public:
 private:
 	bool m_beingInteracted;
 	sf::Time m_repairtimer;
+	sf::Time m_timeToRepair;
 	Object* linkedObject;
 	ObjectType m_type;
 };

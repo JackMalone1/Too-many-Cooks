@@ -18,8 +18,11 @@ private:
 	HelpBox m_helpBox;
 	sf::RectangleShape m_body;
 	sf::Vector2f m_position;
+	bool isRepairing;
+	bool repairPressed;
 
 	void handleCollisions();
+	void newBrokenObject();
 public:
 	Room(sf::Vector2f t_pos);
 	void init();
