@@ -18,6 +18,7 @@ class Object : public Entity
 public:
 	Object(sf::Vector2f t_pos, sf::Color t_colour);
 	sf::RectangleShape getShape() { return m_body; }
+	ObjectType getType() { return m_type; };
 
 private:
 	bool m_beingInteracted;
