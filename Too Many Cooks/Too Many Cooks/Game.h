@@ -11,6 +11,7 @@
 /// Don't forget the endif at the bottom
 /// </summary>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <array>
 #include "Player.h"
 #include "Room.h"
@@ -42,6 +43,9 @@ private:
 	sf::Text m_timerText;
 	sf::Time m_startTime;
 	sf::Clock m_scoreClock;
+
+	sf::Music m_music;
+
 
 	int m_scoreValue;
 	int m_timer;

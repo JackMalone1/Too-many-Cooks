@@ -37,6 +37,11 @@ Game::Game() :
 	}
 	m_background.setTexture(m_texture);
 
+	if (!m_music.openFromFile("ASSETS\\AUDIO\\Welcome To The Black Parade.wav"))
+	{
+		std::cout << "problem loading sound" << std::endl;
+	}
+	m_music.play();
 	setupFontAndText(); // load font 
 	setupSprite(); // load texture
 }
@@ -205,3 +210,4 @@ void Game::countDownTimer()
 	}
 	
 }
+
