@@ -47,6 +47,9 @@ private:
 	int m_timer;
 	bool m_exitGame; // control exiting game
 
+	bool m_finished;
+	sf::Sprite m_background;
+	sf::Texture m_texture;
 
 	std::vector<Room> rooms;
 };

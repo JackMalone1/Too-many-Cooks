@@ -19,7 +19,8 @@
 Game::Game() :
 	m_window{ sf::VideoMode{ 1920, 1080, 32U }, "SFML Game" },
 	m_exitGame{false}, //when true game will exit
-	m_startTime{ sf::seconds(120) }
+	m_startTime{ sf::seconds(120) },
+	m_finished(false)
 {
 	rooms.push_back(Room(sf::Vector2f(100, 50), 0, m_scoreValue, std::string("ASSETS\\IMAGES\\Left_Room.png")));
 	rooms.push_back(Room(sf::Vector2f(1000, 50), 1, m_scoreValue, std::string("ASSETS\\IMAGES\\Right_Room.png")));
@@ -29,6 +30,12 @@ Game::Game() :
 	rooms.at(1).init();
 
 	srand(time(NULL));
+
+	if (!m_texture.loadFromFile("ASSETS\\IMAGES\\hus.png"))
+	{
+		std::cout << "error loading texture" << std::endl;
+	}
+	m_background.setTexture(m_texture);
 
 	setupFontAndText(); // load font 
 	setupSprite(); // load texture
@@ -116,17 +123,26 @@ void Game::processKeys(sf::Event t_event)
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
-	countDownTimer();
-	if (m_exitGame)
+	if (!m_finished)
 	{
-		m_window.close();
+		countDownTimer();
+		if (m_exitGame)
+		{
+			m_window.close();
+		}
+
+		for (Room& r : rooms)
+		{
+			r.update(t_deltaTime);
+		}
+		m_scoreText.setString("Score: " + std::to_string(m_scoreValue));
+		if (m_timer <= 0)
+		{
+			m_finished = true;
+		}
 	}
 
-	for (Room& r : rooms)
-	{
-		r.update(t_deltaTime);
-	}
-	m_scoreText.setString("Score: " + std::to_string(m_scoreValue));
+
 }
 
 /// <summary>
@@ -135,6 +151,7 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
+	m_window.draw(m_background);
 	for (int i = 0; i < rooms.size(); i++)
 	{
 		rooms[i].render(m_window);

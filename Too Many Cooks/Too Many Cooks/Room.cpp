@@ -27,7 +27,7 @@ Room::Room(sf::Vector2f t_pos, int controls, int& t_score, std::string & t_textu
 	m_objects.push_back(Object(sf::Vector2f(0, 0), sf::Color::Magenta, ObjectType::Type5, std::string("ASSETS\\IMAGES\\Wish_Washer.png")));
 	m_objects.push_back(Object(sf::Vector2f(0, 300), sf::Color::Magenta, ObjectType::Type6, std::string("ASSETS\\IMAGES\\A.C.Png")));
 	m_objects.push_back(Object(sf::Vector2f(0, 600), sf::Color::Magenta, ObjectType::Type7, std::string("ASSETS\\IMAGES\\Cold_Boi.png")));
-	m_objects.push_back(Object(sf::Vector2f(200, 600), sf::Color::Magenta, ObjectType::Type8, std::string("ASSETS\\IMAGES\\Hob.png")));
+	m_objects.push_back(Object(sf::Vector2f(200, 600), sf::Color::Magenta, ObjectType::Type8, std::string("ASSETS\\IMAGES\\Mickro_Wav.png")));
 
 	if (!font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
 	{
