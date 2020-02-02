@@ -1,12 +1,14 @@
 #include "Room.h"
 
-Room::Room(sf::Vector2f t_pos) :
+Room::Room(sf::Vector2f t_pos, int controls, int& t_score) :
 	m_player(sf::Vector2f(370, 320)),
+	score(t_score),
 	m_helpBox{ t_pos },
 	repairPressed(false),
 	isRepairing(false),
 	m_currentBroken(nullptr),
-	m_otherRoom(nullptr)
+	m_otherRoom(nullptr),
+	controlType(controls)
 {
 	m_position = t_pos;
 	m_body.setPosition(t_pos);
@@ -93,12 +95,17 @@ void Room::update(sf::Time t_dt)
 	m_player.update();
 
 	m_helpBox.setCurrent(findClosestToPlayer());
+	if (m_player.getInteracting() != nullptr)
+	{
+		m_player.getInteracting()->setBeingInteracted(false);
+		m_player.setInteracting(nullptr);
+	}
 	if (repairPressed)
 	{
-		if (findClosestToPlayer() == m_currentBroken && 
-			findClosestToPlayer()->distanceBetween(m_player.getPosition()) < 150)
+		if (findClosestToPlayer()->distanceBetween(m_player.getPosition()) < 150)
 		{
 			m_player.setInteracting(findClosestToPlayer());
+			m_player.getInteracting()->setBeingInteracted(true);
 			if (m_player.getInteracting() == m_currentBroken)
 			{
 				m_currentBroken->repair(t_dt);
@@ -108,9 +115,22 @@ void Room::update(sf::Time t_dt)
 
 	if (m_currentBroken->getRepairProgress() <= 0)
 	{
+		m_otherRoom;
+		if (m_currentBroken->getLinked()->getBeingInteracted())
+		{
+			score += 100;
+		}
+		else
+		{
+			score -= 100;
+		}
 		newBrokenObject();
 	}
 
+	if (score < 0)
+	{
+		score == 0;
+	}
 	handleCollisions();
 }
 
@@ -118,7 +138,11 @@ void Room::processEvents(sf::Event t_event)
 {
 	if (t_event.type == sf::Event::KeyPressed)
 	{
-		if (t_event.key.code == sf::Keyboard::E)
+		if (t_event.key.code == sf::Keyboard::E && controlType == 0)
+		{
+			repairPressed = true;
+		}
+		if (t_event.key.code == sf::Keyboard::RControl && controlType == 1)
 		{
 			repairPressed = true;
 		}
@@ -126,14 +150,18 @@ void Room::processEvents(sf::Event t_event)
 
 	if (t_event.type == sf::Event::KeyReleased)
 	{
-		if (t_event.key.code == sf::Keyboard::E)
+		if (t_event.key.code == sf::Keyboard::E && controlType == 0)
+		{
+			repairPressed = false;
+		}
+		if (t_event.key.code == sf::Keyboard::RControl && controlType == 1)
 		{
 			repairPressed = false;
 		}
 	}
 	if (!repairPressed)
 	{
-		m_player.processKeyEvents(t_event);
+		m_player.processKeyEvents(t_event, controlType);
 	}
 	else
 	{

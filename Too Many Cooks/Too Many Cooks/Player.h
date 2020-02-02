@@ -15,7 +15,9 @@ public:
 	~Player();
 
 	virtual  void update() override;
-	void processKeyEvents(sf::Event t_event);
+	void processKeyEvents(sf::Event t_event, int type);
+	void controlType0(sf::Event t_event);
+	void controlType1(sf::Event t_event);
 
 	void setLeft(bool t_left) { m_left = t_left; }
 	void setRight(bool t_right) { m_right = t_right; }

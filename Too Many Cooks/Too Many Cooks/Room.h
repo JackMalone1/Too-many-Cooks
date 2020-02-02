@@ -20,11 +20,16 @@ private:
 	sf::Vector2f m_position;
 	bool isRepairing;
 	bool repairPressed;
+	int controlType;
+	Room* m_otherRoom;
+	int& score;
+	sf::Text text;
+	sf::Font font;
 
 	void handleCollisions();
 	void newBrokenObject();
 public:
-	Room(sf::Vector2f t_pos);
+	Room(sf::Vector2f t_pos, int controls, int& t_score);
 	void init();
 	void render(sf::RenderWindow& t_window);
 	void update(sf::Time t_dt);
@@ -32,8 +37,5 @@ public:
 	Object* getRandomObject();
 	void setOtherRoom(Room* t_otherRoom) { m_otherRoom = t_otherRoom; };
 	Object* findClosestToPlayer();
-	Room* m_otherRoom;
-	sf::Text text;
-	sf::Font font;
 };
 

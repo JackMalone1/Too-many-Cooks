@@ -1,7 +1,8 @@
 #include "Player.h"
 
 Player::Player(sf::Vector2f t_position) : 
-	Entity(t_position, sf::Color::Green, 60)
+	Entity(t_position, sf::Color::Green, 60),
+	interacting(false)
 {
 }
 
@@ -32,23 +33,36 @@ void Player::update()
 	}
 }
 
-void Player::processKeyEvents(sf::Event t_event)
+void Player::processKeyEvents(sf::Event t_event, int type)
+{
+	if (type == 0)
+	{
+		controlType0(t_event);
+	}
+	if (type == 1)
+	{
+		controlType1(t_event);
+	}
+
+}
+
+void Player::controlType0(sf::Event t_event)
 {
 	if (t_event.type == sf::Event::KeyPressed)
 	{
-		if (t_event.key.code == sf::Keyboard::W || t_event.key.code == sf::Keyboard::Up)
+		if (t_event.key.code == sf::Keyboard::W)
 		{
 			m_up = true;
 		}
-		if (t_event.key.code == sf::Keyboard::A || t_event.key.code == sf::Keyboard::Left)
+		if (t_event.key.code == sf::Keyboard::A)
 		{
 			m_left = true;
 		}
-		if (t_event.key.code == sf::Keyboard::D || t_event.key.code == sf::Keyboard::Right)
+		if (t_event.key.code == sf::Keyboard::D)
 		{
 			m_right = true;
 		}
-		if (t_event.key.code == sf::Keyboard::S || t_event.key.code == sf::Keyboard::Down)
+		if (t_event.key.code == sf::Keyboard::S)
 		{
 			m_down = true;
 		}
@@ -56,22 +70,64 @@ void Player::processKeyEvents(sf::Event t_event)
 
 	if (t_event.type == sf::Event::KeyReleased)
 	{
-		if (t_event.key.code == sf::Keyboard::W || t_event.key.code == sf::Keyboard::Up)
+		if (t_event.key.code == sf::Keyboard::W)
 		{
 			m_up = false;
 		}
-		if (t_event.key.code == sf::Keyboard::A || t_event.key.code == sf::Keyboard::Left)
+		if (t_event.key.code == sf::Keyboard::A)
 		{
 			m_left = false;
 		}
-		if (t_event.key.code == sf::Keyboard::D || t_event.key.code == sf::Keyboard::Right)
+		if (t_event.key.code == sf::Keyboard::D)
 		{
 			m_right = false;
 		}
-		if (t_event.key.code == sf::Keyboard::S || t_event.key.code == sf::Keyboard::Down)
+		if (t_event.key.code == sf::Keyboard::S)
 		{
 			m_down = false;
 		}
 	}
+}
 
+void Player::controlType1(sf::Event t_event)
+{
+	if (t_event.type == sf::Event::KeyPressed)
+	{
+		if (t_event.key.code == sf::Keyboard::Up)
+		{
+			m_up = true;
+		}
+		if (t_event.key.code == sf::Keyboard::Left)
+		{
+			m_left = true;
+		}
+		if (t_event.key.code == sf::Keyboard::Right)
+		{
+			m_right = true;
+		}
+		if (t_event.key.code == sf::Keyboard::Down)
+		{
+			m_down = true;
+		}
+	}
+
+	if (t_event.type == sf::Event::KeyReleased)
+	{
+		if (t_event.key.code == sf::Keyboard::Up)
+		{
+			m_up = false;
+		}
+		if (t_event.key.code == sf::Keyboard::Left)
+		{
+			m_left = false;
+		}
+		if (t_event.key.code == sf::Keyboard::Right)
+		{
+			m_right = false;
+		}
+		if (t_event.key.code == sf::Keyboard::Down)
+		{
+			m_down = false;
+		}
+	}
 }
