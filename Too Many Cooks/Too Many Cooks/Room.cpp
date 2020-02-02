@@ -1,7 +1,7 @@
 #include "Room.h"
 
 Room::Room(sf::Vector2f t_pos, int controls, int& t_score, std::string & t_texturePath) :
-	m_player(sf::Vector2f(370, 320)),
+	m_player(sf::Vector2f(300, 300)),
 	score(t_score),
 	m_helpBox{ t_pos },
 	repairPressed(false),
@@ -21,12 +21,12 @@ Room::Room(sf::Vector2f t_pos, int controls, int& t_score, std::string & t_textu
 	//m_body.setSize(sf::Vector2f(800, 700));
 	//m_body.setFillColor(sf::Color::Black);
 	m_objects.push_back(Object(sf::Vector2f(300, 100), sf::Color::Magenta, ObjectType::Type1,std::string("ASSETS\\IMAGES\\Circut_Breaker.png")));
-	m_objects.push_back(Object(sf::Vector2f(500, 200), sf::Color::Magenta, ObjectType::Type2, std::string("ASSETS\\IMAGES\\Frodge.png")));
+	m_objects.push_back(Object(sf::Vector2f(700, 200), sf::Color::Magenta, ObjectType::Type2, std::string("ASSETS\\IMAGES\\Frodge.png")));
 	m_objects.push_back(Object(sf::Vector2f(700, 400), sf::Color::Magenta, ObjectType::Type3, std::string("ASSETS\\IMAGES\\Hob.png")));
 	m_objects.push_back(Object(sf::Vector2f(600, 600), sf::Color::Magenta, ObjectType::Type4, std::string("ASSETS\\IMAGES\\Sonk.png")));
 	m_objects.push_back(Object(sf::Vector2f(0, 0), sf::Color::Magenta, ObjectType::Type5, std::string("ASSETS\\IMAGES\\Wish_Washer.png")));
-	m_objects.push_back(Object(sf::Vector2f(0, 300), sf::Color::Magenta, ObjectType::Type6, std::string("ASSETS\\IMAGES\\Circut_Breaker.png")));
-	m_objects.push_back(Object(sf::Vector2f(0, 600), sf::Color::Magenta, ObjectType::Type7, std::string("ASSETS\\IMAGES\\Frodge.png")));
+	m_objects.push_back(Object(sf::Vector2f(0, 300), sf::Color::Magenta, ObjectType::Type6, std::string("ASSETS\\IMAGES\\A.C.Png")));
+	m_objects.push_back(Object(sf::Vector2f(0, 600), sf::Color::Magenta, ObjectType::Type7, std::string("ASSETS\\IMAGES\\Cold_Boi.png")));
 	m_objects.push_back(Object(sf::Vector2f(200, 600), sf::Color::Magenta, ObjectType::Type8, std::string("ASSETS\\IMAGES\\Hob.png")));
 
 	if (!font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))

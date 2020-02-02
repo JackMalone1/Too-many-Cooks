@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player(sf::Vector2f t_position) : 
-	Entity(t_position, sf::Color::Green, 60, std::string("ASSETS\\IMAGES\\Circut_Breaker.png")),
+	Entity(t_position, sf::Color::Green, 60, std::string("ASSETS\\IMAGES\\reapairman.png")),
 	interacting(false)
 {
 }
