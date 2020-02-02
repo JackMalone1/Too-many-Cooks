@@ -174,15 +174,15 @@ void Game::setupFontAndText()
 	m_scoreText.setString("Score: " + std::to_string(m_scoreValue));
 	m_scoreText.setStyle(sf::Text::Italic);
 	m_scoreText.setCharacterSize(30U);
-	m_scoreText.setFillColor(sf::Color::Black);
-	m_scoreText.setPosition(sf::Vector2f{ 0.0f, 0.0f });
+	m_scoreText.setFillColor(sf::Color::White);
+	m_scoreText.setPosition(sf::Vector2f{ 100, 10 });
 
 	m_timerText.setFont(m_ArialBlackfont);
 	m_timerText.setString("Time Left: " + std::to_string(m_timer));
 	m_timerText.setStyle(sf::Text::Italic);
 	m_timerText.setCharacterSize(30U);
-	m_timerText.setFillColor(sf::Color::Black);
-	m_timerText.setPosition(sf::Vector2f{ 1600.0f, 0.0f });
+	m_timerText.setFillColor(sf::Color::White);
+	m_timerText.setPosition(sf::Vector2f{ 1550, 10 });
 
 
 }
