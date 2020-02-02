@@ -18,7 +18,8 @@
 /// </summary>
 Game::Game() :
 	m_window{ sf::VideoMode{ 1920, 1080, 32U }, "SFML Game" },
-	m_exitGame{false} //when true game will exit
+	m_exitGame{false}, //when true game will exit
+	m_startTime{ sf::seconds(120) }
 {
 	rooms.push_back(Room(sf::Vector2f(100, 50)));
 	rooms.push_back(Room(sf::Vector2f(1000, 50)));

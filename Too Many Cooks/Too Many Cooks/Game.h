@@ -40,7 +40,7 @@ private:
 	sf::Font m_ArialBlackfont; // font used by message
 	sf::Text m_scoreText;
 	sf::Text m_timerText;
-	sf::Time m_startTime{ sf::seconds(120) };
+	sf::Time m_startTime;
 	sf::Clock m_scoreClock;
 
 	int m_scoreValue;
