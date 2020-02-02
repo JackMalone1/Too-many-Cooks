@@ -18,7 +18,7 @@ public:
 private:
 	sf::Vector2f m_position;
 	sf::RectangleShape m_body;
-	sf::RectangleShape m_objectShape;
+	sf::Sprite m_objectShape;
 	Object* m_current;
 	sf::Text text;
 	sf::Font font;

@@ -21,8 +21,8 @@ Game::Game() :
 	m_exitGame{false}, //when true game will exit
 	m_startTime{ sf::seconds(120) }
 {
-	rooms.push_back(Room(sf::Vector2f(100, 50), 0, m_scoreValue));
-	rooms.push_back(Room(sf::Vector2f(1000, 50), 1, m_scoreValue));
+	rooms.push_back(Room(sf::Vector2f(100, 50), 0, m_scoreValue, std::string("ASSETS\\IMAGES\\Left_Room.png")));
+	rooms.push_back(Room(sf::Vector2f(1000, 50), 1, m_scoreValue, std::string("ASSETS\\IMAGES\\Right_Room.png")));
 	rooms.at(0).setOtherRoom(&rooms.at(1));
 	rooms.at(1).setOtherRoom(&rooms.at(0));
 	rooms.at(0).init();
