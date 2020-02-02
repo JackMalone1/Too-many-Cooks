@@ -20,14 +20,14 @@ Room::Room(sf::Vector2f t_pos, int controls, int& t_score, std::string & t_textu
 	m_body.setTexture(m_texture);
 	//m_body.setSize(sf::Vector2f(800, 700));
 	//m_body.setFillColor(sf::Color::Black);
-	m_objects.push_back(Object(sf::Vector2f(250, 0), sf::Color::Magenta, ObjectType::Type1,std::string("ASSETS\\IMAGES\\Circut_Breaker.png")));
-	m_objects.push_back(Object(sf::Vector2f(450, 0), sf::Color::Magenta, ObjectType::Type2, std::string("ASSETS\\IMAGES\\Frodge.png")));
-	m_objects.push_back(Object(sf::Vector2f(700, 200), sf::Color::Magenta, ObjectType::Type3, std::string("ASSETS\\IMAGES\\Hob.png")));
-	m_objects.push_back(Object(sf::Vector2f(700, 400), sf::Color::Magenta, ObjectType::Type4, std::string("ASSETS\\IMAGES\\Sonk.png")));
-	m_objects.push_back(Object(sf::Vector2f(0, 200), sf::Color::Magenta, ObjectType::Type5, std::string("ASSETS\\IMAGES\\Wish_Washer.png")));
-	m_objects.push_back(Object(sf::Vector2f(0, 400), sf::Color::Magenta, ObjectType::Type6, std::string("ASSETS\\IMAGES\\Circut_Breaker.png")));
-	m_objects.push_back(Object(sf::Vector2f(250, 600), sf::Color::Magenta, ObjectType::Type7, std::string("ASSETS\\IMAGES\\Frodge.png")));
-	m_objects.push_back(Object(sf::Vector2f(450, 600), sf::Color::Magenta, ObjectType::Type8, std::string("ASSETS\\IMAGES\\Hob.png")));
+	m_objects.push_back(Object(sf::Vector2f(300, 100), sf::Color::Magenta, ObjectType::Type1,std::string("ASSETS\\IMAGES\\Circut_Breaker.png")));
+	m_objects.push_back(Object(sf::Vector2f(500, 200), sf::Color::Magenta, ObjectType::Type2, std::string("ASSETS\\IMAGES\\Frodge.png")));
+	m_objects.push_back(Object(sf::Vector2f(700, 400), sf::Color::Magenta, ObjectType::Type3, std::string("ASSETS\\IMAGES\\Hob.png")));
+	m_objects.push_back(Object(sf::Vector2f(600, 600), sf::Color::Magenta, ObjectType::Type4, std::string("ASSETS\\IMAGES\\Sonk.png")));
+	m_objects.push_back(Object(sf::Vector2f(0, 0), sf::Color::Magenta, ObjectType::Type5, std::string("ASSETS\\IMAGES\\Wish_Washer.png")));
+	m_objects.push_back(Object(sf::Vector2f(0, 300), sf::Color::Magenta, ObjectType::Type6, std::string("ASSETS\\IMAGES\\Circut_Breaker.png")));
+	m_objects.push_back(Object(sf::Vector2f(0, 600), sf::Color::Magenta, ObjectType::Type7, std::string("ASSETS\\IMAGES\\Frodge.png")));
+	m_objects.push_back(Object(sf::Vector2f(200, 600), sf::Color::Magenta, ObjectType::Type8, std::string("ASSETS\\IMAGES\\Hob.png")));
 
 	if (!font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
 	{
