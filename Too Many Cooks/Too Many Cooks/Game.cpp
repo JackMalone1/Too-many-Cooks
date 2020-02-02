@@ -19,7 +19,7 @@
 Game::Game() :
 	m_window{ sf::VideoMode{ 1920, 1080, 32U }, "SFML Game" },
 	m_exitGame{false}, //when true game will exit
-	m_startTime{ sf::seconds(120) },
+	m_startTime{ sf::seconds(90) },
 	m_finished(false)
 {
 	rooms.push_back(Room(sf::Vector2f(100, 50), 0, m_scoreValue, std::string("ASSETS\\IMAGES\\Left_Room.png")));
@@ -182,7 +182,7 @@ void Game::setupFontAndText()
 	m_timerText.setStyle(sf::Text::Italic);
 	m_timerText.setCharacterSize(30U);
 	m_timerText.setFillColor(sf::Color::White);
-	m_timerText.setPosition(sf::Vector2f{ 1550, 10 });
+	m_timerText.setPosition(sf::Vector2f{ 1600, 10 });
 
 
 }
