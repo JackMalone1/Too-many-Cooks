@@ -23,6 +23,6 @@ public:
 	void setDown(bool t_down) { m_down = t_down; }
 	void setInteracting(Object* obj) { interacting = obj; };
 	Object* getInteracting() { return interacting; };
-	sf::RectangleShape getBody() { return m_body; }
+	sf::Sprite getBody() { return m_body; }
 };
 

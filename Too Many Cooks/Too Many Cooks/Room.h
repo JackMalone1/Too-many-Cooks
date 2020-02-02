@@ -16,7 +16,9 @@ private:
 	std::vector<Object> m_objects;
 	Object* m_currentBroken;
 	HelpBox m_helpBox;
-	sf::RectangleShape m_body;
+	sf::Sprite m_body;
+	sf::Texture m_texture;
+	std::string m_texturePath;
 	sf::Vector2f m_position;
 	bool isRepairing;
 	bool repairPressed;
@@ -24,7 +26,7 @@ private:
 	void handleCollisions();
 	void newBrokenObject();
 public:
-	Room(sf::Vector2f t_pos);
+	Room(sf::Vector2f t_pos, std::string& t_texturePath);
 	void init();
 	void render(sf::RenderWindow& t_window);
 	void update(sf::Time t_dt);

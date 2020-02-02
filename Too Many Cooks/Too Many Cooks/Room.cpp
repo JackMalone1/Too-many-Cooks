@@ -1,25 +1,31 @@
 #include "Room.h"
 
-Room::Room(sf::Vector2f t_pos) :
+Room::Room(sf::Vector2f t_pos, std::string& t_texturePath) :
 	m_player(sf::Vector2f(370, 320)),
 	m_helpBox{ t_pos },
 	repairPressed(false),
 	isRepairing(false),
 	m_currentBroken(nullptr),
-	m_otherRoom(nullptr)
+	m_otherRoom(nullptr),
+	m_texturePath(t_texturePath)
 {
 	m_position = t_pos;
 	m_body.setPosition(t_pos);
-	m_body.setSize(sf::Vector2f(800, 700));
-	m_body.setFillColor(sf::Color::Black);
-	m_objects.push_back(Object(sf::Vector2f(250, 0), sf::Color::Magenta, ObjectType::Type1));
-	m_objects.push_back(Object(sf::Vector2f(450, 0), sf::Color::Magenta, ObjectType::Type2));
-	m_objects.push_back(Object(sf::Vector2f(700, 200), sf::Color::Magenta, ObjectType::Type3));
-	m_objects.push_back(Object(sf::Vector2f(700, 400), sf::Color::Magenta, ObjectType::Type4));
-	m_objects.push_back(Object(sf::Vector2f(0, 200), sf::Color::Magenta, ObjectType::Type5));
-	m_objects.push_back(Object(sf::Vector2f(0, 400), sf::Color::Magenta, ObjectType::Type6));
-	m_objects.push_back(Object(sf::Vector2f(250, 600), sf::Color::Magenta, ObjectType::Type7));
-	m_objects.push_back(Object(sf::Vector2f(450, 600), sf::Color::Magenta, ObjectType::Type8));
+	if (!m_texture.loadFromFile(m_texturePath))
+	{
+		std::cout << "error" << std::endl;
+	}
+	m_body.setTexture(m_texture);
+	//m_body.setSize(sf::Vector2f(800, 700));
+	//m_body.setFillColor(sf::Color::Black);
+	m_objects.push_back(Object(sf::Vector2f(250, 0), sf::Color::Magenta, ObjectType::Type1,std::string("ASSETS\\IMAGES\\Circut_Breaker.png")));
+	m_objects.push_back(Object(sf::Vector2f(450, 0), sf::Color::Magenta, ObjectType::Type2, std::string("ASSETS\\IMAGES\\Frodge.png")));
+	m_objects.push_back(Object(sf::Vector2f(700, 200), sf::Color::Magenta, ObjectType::Type3, std::string("ASSETS\\IMAGES\\Hob.png")));
+	m_objects.push_back(Object(sf::Vector2f(700, 400), sf::Color::Magenta, ObjectType::Type4, std::string("ASSETS\\IMAGES\\Sonk.png")));
+	m_objects.push_back(Object(sf::Vector2f(0, 200), sf::Color::Magenta, ObjectType::Type5, std::string("ASSETS\\IMAGES\\Wish_Washer.png")));
+	m_objects.push_back(Object(sf::Vector2f(0, 400), sf::Color::Magenta, ObjectType::Type6, std::string("ASSETS\\IMAGES\\Circut_Breaker.png")));
+	m_objects.push_back(Object(sf::Vector2f(250, 600), sf::Color::Magenta, ObjectType::Type7, std::string("ASSETS\\IMAGES\\Frodge.png")));
+	m_objects.push_back(Object(sf::Vector2f(450, 600), sf::Color::Magenta, ObjectType::Type8, std::string("ASSETS\\IMAGES\\Hob.png")));
 
 	if (!font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
 	{
@@ -40,17 +46,17 @@ void Room::handleCollisions()
 	{
 		m_player.setPosition(sf::Vector2f(2, m_player.getPosition().y));
 	}
-	if (m_player.getPosition().x + m_position.x + m_player.getBody().getSize().x >= m_position.x + 800)
+	if (m_player.getPosition().x + m_position.x + m_player.getBody().getGlobalBounds().width >= m_position.x + 800)
 	{
-		m_player.setPosition(sf::Vector2f(800 - m_player.getBody().getSize().x - 2, m_player.getPosition().y));
+		m_player.setPosition(sf::Vector2f(800 - m_player.getBody().getGlobalBounds().width - 2, m_player.getPosition().y));
 	}
 	if (m_player.getPosition().y + m_position.y < m_position.y)
 	{
 		m_player.setPosition(sf::Vector2f(m_player.getPosition().x, 2));
 	}
-	if (m_player.getPosition().y + m_position.y + m_player.getBody().getSize().y >= m_position.y + 700)
+	if (m_player.getPosition().y + m_position.y + m_player.getBody().getGlobalBounds().height >= m_position.y + 700)
 	{
-		m_player.setPosition(sf::Vector2f(m_player.getPosition().x, 700 - m_player.getBody().getSize().y - 2));
+		m_player.setPosition(sf::Vector2f(m_player.getPosition().x, 700 - m_player.getBody().getGlobalBounds().height - 2));
 	}
 }
 
@@ -67,6 +73,7 @@ void Room::newBrokenObject()
 
 void Room::render(sf::RenderWindow& t_window)
 {
+	m_body.setTexture(m_texture);
 	t_window.draw(m_body);
 	m_player.render(t_window, m_position);
 	for (auto& object : m_objects)
