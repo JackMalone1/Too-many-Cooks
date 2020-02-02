@@ -53,28 +53,28 @@ std::string HelpBox::setObjectTypeText(ObjectType t_type)
 	switch (t_type)
 	{
 	case ObjectType::Type1:
-		string = "type1";
+		string = "Circut Board";
 		break;
 	case ObjectType::Type2:
-		string = "type2";
+		string = "Fridge";
 		break;
 	case ObjectType::Type3:
-		string = "type3";
+		string = "Cooker";
 		break;
 	case ObjectType::Type4:
-		string = "type4";
+		string = "Sink";
 		break;
 	case ObjectType::Type5:
-		string = "type5";
+		string = "Washing Machine";
 		break;
 	case ObjectType::Type6:
-		string = "type6";
+		string = "A.C Unit";
 		break;
 	case ObjectType::Type7:
-		string = "type7";
+		string = "Freezer";
 		break;
 	case ObjectType::Type8:
-		string = "type8";
+		string = "Micro Wave";
 		break;
 	}
 
